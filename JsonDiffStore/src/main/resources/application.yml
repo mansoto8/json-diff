@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: json-diff-store
+server:
+  port: 8083
+eureka:
+  client:
+    registry-fetch-interval-seconds: 15
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+      default-zone: http://localhost:8761/eureka/
