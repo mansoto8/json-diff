@@ -1,6 +1,7 @@
 package com.waes.jsondiff.comparator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
@@ -32,8 +33,11 @@ public class JsonDiffComparatorServiceApplicationIT {
 	private TestRestTemplate restTemplate = new TestRestTemplate();
 
 	@Test
-	public void testGetJsonComparison() throws JSONException {
-		prepareData();
+	public void testGetJsonComparison_equalJsons() throws JSONException {
+		String leftJson = "{\r\n\t\"jsonProperty\": \"Left json string 454\",\r\n\t\"jsonProperty3\": {\r\n\t\t\"jsonProperty\": \"Left json string 454\"\r\n\t}\r\n}";
+		String rightJson = "{\r\n\t\"jsonProperty\": \"Left json string 454\",\r\n\t\"jsonProperty3\": {\r\n\t\t\"jsonProperty\": \"Left json string 454\"\r\n\t}\r\n}";
+		prepareData(leftJson, rightJson, 100);
+		
 		ResponseEntity<JsonComparison> response = restTemplate.getForEntity(createURLWithPort("/diff/100"),
 				JsonComparison.class);
 
@@ -42,15 +46,42 @@ public class JsonDiffComparatorServiceApplicationIT {
 		assertTrue(response.getBody().isEqual());
 	}
 	
-	private void prepareData() {
-		restTemplate.delete(createURLWithPort("/jsontext/100"));
+	@Test
+	public void testGetJsonComparison_differentJsons() throws JSONException {
 		String leftJson = "{\r\n\t\"jsonProperty\": \"Left json string 454\",\r\n\t\"jsonProperty3\": {\r\n\t\t\"jsonProperty\": \"Left json string 454\"\r\n\t}\r\n}";
-		String rightJson = "{\r\n\t\"jsonProperty\": \"Left json string 454\",\r\n\t\"jsonProperty3\": {\r\n\t\t\"jsonProperty\": \"Left json string 454\"\r\n\t}\r\n}";
-		TestJsonTextPair jsonTextPair = new TestJsonTextPair(100, leftJson, rightJson);
+		String rightJson = "{\r\n\t\"jsonProperty\": \"Left json string 454\"}\r\n}";
+		prepareData(leftJson, rightJson, 101);
+		
+		ResponseEntity<JsonComparison> response = restTemplate.getForEntity(createURLWithPort("/diff/101"),
+				JsonComparison.class);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals("Json parts are of different size.", response.getBody().getJsonReport());
+		assertFalse(response.getBody().isEqual());
+	}
+	
+	@Test
+	public void testGetJsonComparison_equalSizeJsonsWithDifferences() throws JSONException {
+		String leftJson = "{\r\n\t\"jsonProperty1\": \"propertyValue12345\",\r\n\t\"jsonProperty2\": \"propertyValue12345\",\r\n\t\"jsonProperty3\": \"propertyValue12345\"}\r\n}";
+		String rightJson = "{\r\n\t\"jsonProperty1\": \"propertyValue1234\",\r\n\t\"jsonProperty2\": \"propertyValue123456\",\r\n\t\"jsonProperty3\": \"propertyValue12345\"}\r\n}";
+		prepareData(leftJson, rightJson, 102);
+		ResponseEntity<JsonComparison> response = restTemplate.getForEntity(createURLWithPort("/diff/102"),
+				JsonComparison.class);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals("Next is the list of properties with the comparison summary: \n"
+				+ "jsonProperty1: Value differs by 1 characters.\n" + "jsonProperty2: Value differs by 1 characters.\n"
+				+ "jsonProperty3: Value is equal in both parts.\n", response.getBody().getJsonReport());
+		assertFalse(response.getBody().isEqual());
+	}
+	
+	private void prepareData(String leftJson, String rightJson, long id) {
+		restTemplate.delete(createURLWithPort("/jsontext/"+id));
+
+		TestJsonTextPair jsonTextPair = new TestJsonTextPair(102, leftJson, rightJson);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
 		final HttpEntity<TestJsonTextPair> requestEntity = new HttpEntity<>(jsonTextPair, headers);
-		System.out.println("URL: " + storeClient.getProfileUri() + "/100");
 		restTemplate.exchange(storeClient.getProfileUri(), HttpMethod.POST, requestEntity, Void.class);
 	}
 
