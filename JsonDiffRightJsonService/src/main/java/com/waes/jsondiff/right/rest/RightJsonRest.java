@@ -1,4 +1,4 @@
-package com.waes.jsondiff.left.rest;
+package com.waes.jsondiff.right.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.waes.jsondiff.left.services.LeftJsonService;
+import com.waes.jsondiff.right.services.RightJsonService;
 
 @RestController
-public class LeftJsonRest {
+public class RightJsonRest {
 
 	@Autowired
-	private LeftJsonService jsonService;
+	private RightJsonService jsonService;
 
-	@PostMapping(value = "/diff/{id}/left")
+	@PostMapping(value = "/diff/{id}/right")
 	public ResponseEntity<Object> postLeftText(@PathVariable Long id, @Valid @RequestBody String encodedJson)
 			throws RestClientException, URISyntaxException {
 		jsonService.persistLeftJson(id, new String(Base64.decodeBase64(encodedJson.getBytes())));

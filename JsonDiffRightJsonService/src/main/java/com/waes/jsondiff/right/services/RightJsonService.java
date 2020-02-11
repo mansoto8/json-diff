@@ -1,4 +1,4 @@
-package com.waes.jsondiff.left.services;
+package com.waes.jsondiff.right.services;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -7,32 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.waes.jsondiff.left.dto.LeftJsonText;
+import com.waes.jsondiff.right.dto.RightJsonText;
 
 @Service
-public class LeftJsonService {
+public class RightJsonService {
 	
 	private StoreClient storeClient;
 	private RestTemplate restTemplate;	
 
 	@Autowired
-	public LeftJsonService(StoreClient storeClient, RestTemplate restTemplate) {
+	public RightJsonService(StoreClient storeClient, RestTemplate restTemplate) {
 		this.storeClient = storeClient;
 		this.restTemplate = restTemplate;
 	}
 
 	public ResponseEntity<Void> persistLeftJson(long id, String jsonText) throws RestClientException, URISyntaxException {
-		LeftJsonText leftJson = new LeftJsonText(id, jsonText);
+		RightJsonText rightJson = new RightJsonText(id, jsonText);
 		URI storeUri = this.storeClient.getProfileUri();
 		
 		ResponseEntity<Boolean> idExists = restTemplate.getForEntity(storeUri + "/exists/" + id, Boolean.class);		
 		ResponseEntity<Void> response = null;
-		final HttpEntity<LeftJsonText> requestEntity = new HttpEntity<>(leftJson);
+		final HttpEntity<RightJsonText> requestEntity = new HttpEntity<>(rightJson);
 		
 		if(idExists.getBody()) {
 			response = restTemplate.exchange(new URI(storeUri + "/" + id), HttpMethod.PATCH, requestEntity, Void.class);
