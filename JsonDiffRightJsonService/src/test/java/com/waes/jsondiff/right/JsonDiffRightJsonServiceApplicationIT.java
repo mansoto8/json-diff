@@ -27,9 +27,9 @@ public class JsonDiffRightJsonServiceApplicationIT {
 	@Autowired
 	private StoreClient storeClient;
 
-	TestRestTemplate restTemplate = new TestRestTemplate();
+	private TestRestTemplate restTemplate = new TestRestTemplate();
 
-	HttpHeaders headers = new HttpHeaders();
+	private HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void postRightText_patch() throws JSONException {

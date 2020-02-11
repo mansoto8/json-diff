@@ -13,7 +13,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class JsonTextPair {
-
 	@Id
 	private long id;
 	@Column(columnDefinition="TEXT")
