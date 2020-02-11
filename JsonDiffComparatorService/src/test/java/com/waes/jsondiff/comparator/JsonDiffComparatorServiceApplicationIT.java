@@ -88,35 +88,5 @@ public class JsonDiffComparatorServiceApplicationIT {
 	private String createURLWithPort(String uri) {
 		return "http://localhost:" + port + uri;
 	}
-	
-	public class TestJsonTextPair {
-		private long id;
-		private String leftJson;
-		private String rightJson;
-		public TestJsonTextPair(long id, String leftJson, String rightJson) {
-			super();
-			this.id = id;
-			this.leftJson = leftJson;
-			this.rightJson = rightJson;
-		}
-		public long getId() {
-			return id;
-		}
-		public void setId(long id) {
-			this.id = id;
-		}
-		public String getLeftJson() {
-			return leftJson;
-		}
-		public void setLeftJson(String leftJson) {
-			this.leftJson = leftJson;
-		}
-		public String getRightJson() {
-			return rightJson;
-		}
-		public void setRightJson(String rightJson) {
-			this.rightJson = rightJson;
-		}
-		
-	}
+
 }
