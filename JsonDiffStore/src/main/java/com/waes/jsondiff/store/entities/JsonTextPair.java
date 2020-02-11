@@ -1,5 +1,6 @@
 package com.waes.jsondiff.store.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,6 +16,8 @@ public class JsonTextPair {
 
 	@Id
 	private long id;
+	@Column(columnDefinition="TEXT")
 	private String leftJson;
+	@Column(columnDefinition="TEXT")
 	private String rightJson;
 }

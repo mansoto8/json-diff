@@ -7,5 +7,4 @@ import com.waes.jsondiff.store.entities.JsonTextPair;
 
 @RepositoryRestResource(collectionResourceRel = "jsontext", path = "jsontext")
 public interface JsonTextPairRepository extends CrudRepository<JsonTextPair, Long> {
-	
 }
