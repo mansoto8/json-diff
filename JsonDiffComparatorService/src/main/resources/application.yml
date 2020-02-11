@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: json-diff-comparator-service
+server:
+  port: 8086
+eureka:
+  client:
+    registry-fetch-interval-seconds: 15
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+      default-zone: http://localhost:8761/eureka/

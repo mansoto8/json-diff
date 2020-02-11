@@ -26,7 +26,7 @@ public class JsonDiffLeftJsonServiceApplicationIT {
 	HttpHeaders headers = new HttpHeaders();
 
 	@Test
-	public void testRetrieveStudentCourse() throws JSONException {
+	public void testPostLeftJson() throws JSONException {
 		headers.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded");
 		String encodedJson = "ew0KCSJqc29uUHJvcGVydHkiOiAiTGVmdCBqc29uIHN0cmluZyA0NTQiLA0KCSJqc29uUHJvcGVydHkyIjogew0KCQkianNvblByb3BlcnR5IjogIkxlZnQganNvbiBzdHJpbmcgNDU0Ig0KCX0NCn0=";
 		HttpEntity<String> entity = new HttpEntity<String>(encodedJson, headers);
