@@ -20,7 +20,7 @@ RightJsonService: Service that expose endpoint for storing the json right part. 
 ComparatorService: Service that expose endpoint for performing a comparison of the left and right json parts identified by an id.
 StoreServer: This server hosts an H2 in memory database and exposes endpoints of mainly crud operations that are used by the other services.
 
-###Technologies used:
+### Technologies used:
 Spring boot: mainly for having an embedded server which eases the development of microservices.
 Lombok: Library for using annotations that avoid having to write common class methods (getters, setters, constructors).
 Spring MVC: Exposes all the functionality of this kind of architecture (It for example has the controllers that enable the rest endpoints)
