@@ -14,21 +14,21 @@ LeftJsonService		RightJsonService	ComparatorService
 
 	|______________ StoreServer (DB) _______________|
 
-EurekaServer: Is the server that register all microservices location. Whenever a service wants to communicate with another service it ask EurekaServer for the location of the other service.
-LeftJsonService: Service that expose endpoint for storing the json left part. It communicates with the StoreServer for persisting the information.
-RightJsonService: Service that expose endpoint for storing the json right part. It communicates with the StoreServer for persisting the information.
-ComparatorService: Service that expose endpoint for performing a comparison of the left and right json parts identified by an id.
-StoreServer: This server hosts an H2 in memory database and exposes endpoints of mainly crud operations that are used by the other services.
+1. EurekaServer: Is the server that register all microservices location. Whenever a service wants to communicate with another service it ask EurekaServer for the location of the other service.
+2. LeftJsonService: Service that expose endpoint for storing the json left part. It communicates with the StoreServer for persisting the information.
+3. RightJsonService: Service that expose endpoint for storing the json right part. It communicates with the StoreServer for persisting the information.
+4. ComparatorService: Service that expose endpoint for performing a comparison of the left and right json parts identified by an id.
+5. StoreServer: This server hosts an H2 in memory database and exposes endpoints of mainly crud operations that are used by the other services.
 
 ### Technologies used:
-Spring boot: mainly for having an embedded server which eases the development of microservices.
-Lombok: Library for using annotations that avoid having to write common class methods (getters, setters, constructors).
-Spring MVC: Exposes all the functionality of this kind of architecture (It for example has the controllers that enable the rest endpoints)
-Junit5: For enabling unit and integration testing.
-Spring cloud: exposes a server (Eureka) that manage multiple microservices. It also eases the communication between the services registered.
-Spring boot devtools: functionality that eases the development process.
-Apache commons codec: Library that has encoding/decoding utilities.
-Gradle: all the project configuration and dependency management was designed.
+1. Spring boot: mainly for having an embedded server which eases the development of microservices.
+2. Lombok: Library for using annotations that avoid having to write common class methods (getters, setters, constructors).
+3. Spring MVC: Exposes all the functionality of this kind of architecture (It for example has the controllers that enable the rest endpoints)
+4. Junit5: For enabling unit and integration testing.
+5. Spring cloud: exposes a server (Eureka) that manage multiple microservices. It also eases the communication between the services registered.
+6. Spring boot devtools: functionality that eases the development process.
+7. Apache commons codec: Library that has encoding/decoding utilities.
+8. Gradle: all the project configuration and dependency management was designed.
 
 ## The projects in this repository:
 
