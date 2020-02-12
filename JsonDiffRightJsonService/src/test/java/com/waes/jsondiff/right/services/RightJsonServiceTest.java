@@ -20,6 +20,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Units tests for the right persistence service
+ */
 @ExtendWith(MockitoExtension.class)
 public class RightJsonServiceTest {
 	

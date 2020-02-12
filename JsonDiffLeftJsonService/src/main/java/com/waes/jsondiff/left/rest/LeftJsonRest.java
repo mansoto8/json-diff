@@ -17,12 +17,25 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.waes.jsondiff.left.services.LeftJsonService;
 
+/**
+ * Controller that exposes the endpoint for the storing in database the left
+ * part of the json object pair to be compared.
+ */
 @RestController
 public class LeftJsonRest {
 
 	@Autowired
 	private LeftJsonService jsonService;
 
+	/**
+	 * Receives a base64 encoded json, decode it and store it in the database as the left part.
+	 * 
+	 * @param id Represents the pair of json objects that are going to be compared.
+	 * @param encodedJson Base64 encoded json to be compared
+	 * @return A response entity with CREATED code if json stored successfully.
+	 * @throws RestClientException If an error happens while accessing the store.
+	 * @throws URISyntaxException If an error occurs when generating the uri for accessing the store
+	 */
 	@PostMapping(value = "/diff/{id}/left")
 	public ResponseEntity<Object> postLeftText(@PathVariable Long id, @Valid @RequestBody String encodedJson)
 			throws RestClientException, URISyntaxException {

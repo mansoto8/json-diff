@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents the right part of the json pair to be stored in the database.
+ */
 @Getter
 @Setter
 @AllArgsConstructor(access = AccessLevel.PUBLIC)

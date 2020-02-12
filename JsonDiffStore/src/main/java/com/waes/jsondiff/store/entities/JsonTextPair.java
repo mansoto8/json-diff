@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Entity that contains the two json parts to be compared and an identifier.
+ */
 @Entity
 @Getter
 @Setter

@@ -22,6 +22,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.waes.jsondiff.store.entities.JsonTextPair;
 import com.waes.jsondiff.store.repositories.JsonTextPairRepository;
 
+/**
+ * Integration tests for the endpoints used by other services. 
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = JsonDiffStoreApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class JsonDiffStoreApplicationIT {

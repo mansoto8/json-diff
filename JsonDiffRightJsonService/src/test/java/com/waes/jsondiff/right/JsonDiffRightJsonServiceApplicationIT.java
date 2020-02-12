@@ -18,6 +18,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.waes.jsondiff.right.services.StoreClient;
 
+/**
+ * Integration test for testing the endpoint that stores the right part of the
+ * json pair to be compared.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = JsonDiffRightJsonServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class JsonDiffRightJsonServiceApplicationIT {
@@ -27,6 +31,7 @@ public class JsonDiffRightJsonServiceApplicationIT {
 	@Autowired
 	private StoreClient storeClient;
 
+	//Rest template for executing HTTP requests in the test
 	private TestRestTemplate restTemplate = new TestRestTemplate();
 
 	private HttpHeaders headers = new HttpHeaders();
@@ -70,6 +75,15 @@ public class JsonDiffRightJsonServiceApplicationIT {
 		assertEquals(expectedRightJson, jsonPair.getBody().getRightJson());
 	}
 	
+	/**
+	 * Prepares the data necessary for the succesfull execution of the tests. It may
+	 * delete data already stored in the database and recreate it for ensuring the
+	 * proper structuring for the tests.
+	 * 
+	 * @param leftJson left part of the json pair to be compared
+	 * @param rightJson right part of the json pair to be compared
+	 * @param id Identifies the json pair to be compared
+	 */
 	private void prepareData(String leftJson, String rightJson, long id) {
 		restTemplate.delete(createURLWithPort("/jsontext/"+id));
 

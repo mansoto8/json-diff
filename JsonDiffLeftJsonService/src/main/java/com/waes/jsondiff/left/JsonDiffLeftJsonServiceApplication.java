@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Application that exposes and endpoint for storing the left part of a json
+ * pair to be compared.
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 public class JsonDiffLeftJsonServiceApplication {

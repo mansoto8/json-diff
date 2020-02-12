@@ -7,11 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents the left part of the json pair to be stored in the database.
+ */
 @Getter
 @Setter
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class LeftJsonText {
 	private long id;
 	@NotNull
-	private String leftJson; 
+	private String leftJson;
 }
