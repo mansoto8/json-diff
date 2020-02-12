@@ -8,8 +8,10 @@ The project is designed in a microservices architecture with the following compo
 
 	 __________________ EurekaServer ________________
 	|		       |		        |
+
 LeftJsonService		RightJsonService	ComparatorService
-	|		       |	           	|
+				|
+
 	|______________ StoreServer (DB) _______________|
 
 EurekaServer: Is the server that register all microservices location. Whenever a service wants to communicate with another service it ask EurekaServer for the location of the other service.
