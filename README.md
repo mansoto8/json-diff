@@ -108,3 +108,4 @@ You can run the test right clicking in the file and selection Run as -> Junit te
 - Add Swagger documentation
 - Configure tests tasks for be able to run them from the terminal
 - Dockerize solution
+- Add html view for the application
