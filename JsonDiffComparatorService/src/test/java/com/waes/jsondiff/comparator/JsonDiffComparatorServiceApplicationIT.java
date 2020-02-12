@@ -21,6 +21,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.waes.jsondiff.comparator.dto.JsonComparison;
 import com.waes.jsondiff.comparator.services.StoreClient;
 
+/**
+ * Contains the integration tests for checking the comparator behavior. As a
+ * precondition for the tests to be successful the store server and the eureka
+ * server must be running.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = JsonDiffComparatorServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class JsonDiffComparatorServiceApplicationIT {
@@ -75,6 +80,12 @@ public class JsonDiffComparatorServiceApplicationIT {
 		assertFalse(response.getBody().isEqual());
 	}
 	
+	/**
+	 * Creates the necessary data in the database for the integration tests.
+	 * @param leftJson To be stored in the database
+	 * @param rightJson To be stored in the database
+	 * @param id Represents the two json objects to be compared
+	 */
 	private void prepareData(String leftJson, String rightJson, long id) {
 		restTemplate.delete(createURLWithPort("/jsontext/"+id));
 

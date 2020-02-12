@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Represents the result, returned to the client, of the comparison of two json
+ * objects identified by the same id in the database.
+ */
 @Getter
 @Setter
 @AllArgsConstructor(access = AccessLevel.PUBLIC)

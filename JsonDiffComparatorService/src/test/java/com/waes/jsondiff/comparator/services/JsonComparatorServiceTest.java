@@ -17,7 +17,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,6 +24,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.waes.jsondiff.comparator.dto.JsonComparison;
 import com.waes.jsondiff.comparator.dto.JsonTextPair;
 
+/**
+ * Unit tests for the comparator service 
+ */
 @ExtendWith(MockitoExtension.class)
 public class JsonComparatorServiceTest {
 

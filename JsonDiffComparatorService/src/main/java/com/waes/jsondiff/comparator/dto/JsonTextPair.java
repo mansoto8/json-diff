@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Stores two json objects that are going to be compared by the service.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

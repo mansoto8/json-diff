@@ -9,6 +9,10 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Exception handler for returning custom messages to the client whenever
+ * exceptions of specific types are thrown from the whole application.
+ */
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = { RestClientException.class })

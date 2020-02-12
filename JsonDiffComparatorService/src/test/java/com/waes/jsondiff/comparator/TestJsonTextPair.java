@@ -1,5 +1,9 @@
 package com.waes.jsondiff.comparator;
 
+/**
+ * DTO used in tests for the communication with the store in the setting of the
+ * data necessary for the integration tests.
+ */
 public class TestJsonTextPair {
 	private long id;
 	private String leftJson;

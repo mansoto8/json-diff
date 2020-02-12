@@ -6,6 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Application that exposes an endpoint for the comparison of two json objects.
+ * Indicating if they are equal, or of different size or if of same size with
+ * statistics about differences in each offset.
+ */
 @SpringBootApplication
 public class JsonDiffComparatorServiceApplication {
 

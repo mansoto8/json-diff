@@ -8,6 +8,9 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+/**
+ * Discovery client of detecting the url of the store server.
+ */
 @Service
 public class StoreClient {
 
@@ -18,10 +21,14 @@ public class StoreClient {
 		this.discoveryClient = discoveryClient;
 	}
 
+	/**
+	 * Gets the uri of the store server
+	 * 
+	 * @return uri of store server
+	 */
 	public URI getProfileUri() {
 		ServiceInstance instance = discoveryClient.getInstances("json-diff-store").get(0);
 		String url = instance.getUri().toString();
-		System.out.println("URL: ------------------------- "+url);
 
 		return UriComponentsBuilder.fromHttpUrl(url + "/jsontext").buildAndExpand().toUri();
 	}
